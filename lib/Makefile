@@ -6,12 +6,14 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 16:20:48 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/28 16:57:38 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/06/28 23:50:16 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-A_FILES				=	libft/libft.a libft_printf/libftprintf.a
-H_FILES				=	libft/libft.h libft_printf/include/ft_printf.h
+A_FILES				=	libft/libft.a libft_printf/libftprintf.a \
+						minilibx-linux/libmlx.a
+H_FILES				=	libft/libft.h libft_printf/include/ft_printf.h \
+						minilibx-linux/mlx.h minilibx-linux/mlx_int.h
 LIB_FOLDERS			=	$(dir $(A_FILES))
 
 .PHONY: all

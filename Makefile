@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/28 18:58:05 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/06/29 00:18:44 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,13 @@ INCLUDES		=	-I $(INCLUDE) -I $(LIB)
 # C (Source code) and H (Header) files
 SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c
 SRC_H_FILES		=	fractol.h
-LOCAL_LIBS		=	libftprintf.a libft.a
-GLOBAL_LIBS		=	libmlx.a
+ifeq ($(OS), Darwin)
+	LOCAL_LIBS		=	libftprintf.a libft.a
+	GLOBAL_LIBS		=	libmlx.a
+else
+	LOCAL_LIBS		=	libftprintf.a libft.a libmlx.a
+	GLOBAL_LIBS		=	libX11.a libXext.a
+endif
 LOCAL_LIB_FILES	=	$(addprefix $(LIB)/, $(LOCAL_LIBS))
 LIB_FILES		=	$(addprefix -l , $(patsubst lib%.a, %, $(LOCAL_LIBS)))
 LIB_FILES		+=	$(addprefix -l , $(patsubst lib%.a, %, $(GLOBAL_LIBS)))
@@ -107,8 +112,12 @@ ifeq ($(OS), Darwin)
 	FRAMEWORKS		=	-framework OpenGL -framework AppKit
 	D_ATTRIBUTES	=	
 	INCLUDES		+=	
-	LD_FLAGS		+=	$(D_ATTRIBUTES) $(FRAMEWORKS)
+	LD_FLAGS		+=	$(FRAMEWORKS)
+else
+	D_ATTRIBUTES	=	
+	LD_FLAGS		+=	
 endif
+LD_FLAGS			+=	$(D_ATTRIBUTES)
 
 # Colours for printouts
 RED				=	\033[0;31m

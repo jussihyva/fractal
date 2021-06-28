@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/28 19:04:27 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/06/28 22:00:01 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "libft.h"
 # include "ft_printf.h"
-# include "mlx.h"
+# ifdef DARWIN
+#  include "mlx.h"
+# else
+#  include "mlx.h"
+# endif
 
 # define ESC		53
 
