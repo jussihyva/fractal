@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/29 17:58:53 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/06/29 23:11:38 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,12 +86,10 @@ INCLUDES		=	-I $(INCLUDE) -I $(LIB)
 SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c image.c \
 					fractal_julia.c
 SRC_H_FILES		=	fractol.h
-ifeq ($(OS), Darwin)
-	LOCAL_LIBS		=	libftprintf.a libft.a
-	GLOBAL_LIBS		=	libmlx.a
-else
-	LOCAL_LIBS		=	libftprintf.a libft.a libmlx.a
-	GLOBAL_LIBS		=	libX11.a libXext.a
+LOCAL_LIBS		=	libftprintf.a libft.a
+GLOBAL_LIBS		=	libmlx.a
+ifneq ($(OS), Darwin)
+	GLOBAL_LIBS	+=	libX11.a libXext.a
 endif
 LOCAL_LIB_FILES	=	$(addprefix $(LIB)/, $(LOCAL_LIBS))
 LIB_FILES		=	$(addprefix -l , $(patsubst lib%.a, %, $(LOCAL_LIBS)))
