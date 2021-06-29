@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/29 09:48:05 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/06/29 14:42:15 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ LD_FLAGS		=	-std=gnu17 -L$(LIB) $(LIB_FILES)
 ifeq ($(OS), Darwin)
 	FRAMEWORKS		=	-framework OpenGL -framework AppKit
 	D_ATTRIBUTES	=	
-	INCLUDES		+=	
+	INCLUDES		+=	-I $(HOME)/.brew/include
 	LD_FLAGS		+=	$(FRAMEWORKS)
 else
 	D_ATTRIBUTES	=	

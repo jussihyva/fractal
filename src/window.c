@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/29 10:41:42 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/06/29 14:46:28 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,18 @@ t_window	*window_initialize(char *window_name)
 	t_window	*window;
 
 	window = (t_window *)ft_memalloc(sizeof(*window));
-	window->window_size.x = 900;
 	window->window_size.y = 600;
-	window->mlx = mlx_init();
+	window->window_size.x = 900;
+	window->mlx = (t_xvar *)mlx_init();
 	window->win = mlx_new_window(window->mlx, window->window_size.x,
 			window->window_size.y, window_name);
 	window_activate_hook_events(window);
 	return (window);
+}
+
+void	window_release(t_window **window)
+{
+	mlx_destroy_image((*window)->mlx, (*window)->image);
+	mlx_destroy_window((*window)->mlx, (*window)->win);
+	return ;
 }
