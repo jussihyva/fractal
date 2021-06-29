@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/29 14:42:15 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/06/29 17:58:53 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ FOLDERS			=	$(LIB) $(BIN) $(DATA) $(OBJ) $(SRC) $(INCLUDE) $(TEST)
 INCLUDES		=	-I $(INCLUDE) -I $(LIB)
 
 # C (Source code) and H (Header) files
-SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c
+SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c image.c \
+					fractal_julia.c
 SRC_H_FILES		=	fractol.h
 ifeq ($(OS), Darwin)
 	LOCAL_LIBS		=	libftprintf.a libft.a
