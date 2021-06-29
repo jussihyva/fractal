@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/29 16:16:04 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/06/29 17:51:51 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_yx_value
 
 typedef struct s_image_data
 {
-	char			*pixels_start_prt;
+	unsigned int	*pixels_start_prt;
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;

@@ -6,14 +6,19 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:38 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/29 16:30:35 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/06/29 17:53:33 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	image_pixel_set(unsigned int *pixel_ptr, unsigned int pixel_color)
+static void	image_pixel_set(unsigned int *pixels_start_prt, int pixels_per_line,
+						t_yx_value *pixel_position, unsigned int pixel_color)
 {
+	unsigned int		*pixel_ptr;
+
+	pixel_ptr = pixels_start_prt + (pixels_per_line * pixel_position->y)
+		+ pixel_position->x;
 	*pixel_ptr = pixel_color;
 	return ;
 }
@@ -22,16 +27,15 @@ static void	print_something(t_image_data *image_data,
 													t_yx_value *pixel_position)
 {
 	int					y_end_point;
-	unsigned int		*pixel_prt;
+	unsigned int		color;
 
+	color = 0x00FF0000;
 	y_end_point = pixel_position->y + 55;
-	pixel_prt = (unsigned int *)image_data->pixels_start_prt
-		+ (image_data->pixels_per_line * pixel_position->y) + pixel_position->x;
-	image_pixel_set((unsigned int *)pixel_prt, 0x00FF0000);
-	while (++pixel_position->y < y_end_point)
+	while (pixel_position->y < y_end_point)
 	{
-		pixel_prt += image_data->pixels_per_line;
-		image_pixel_set((unsigned int *)pixel_prt, 0x00FF0000);
+		image_pixel_set(image_data->pixels_start_prt,
+			image_data->pixels_per_line, pixel_position, color);
+		pixel_position->y++;
 	}
 	return ;
 }
@@ -41,7 +45,7 @@ static t_image_data	*get_image_data(void *image)
 	t_image_data	*image_data;
 
 	image_data = (t_image_data *)ft_memalloc(sizeof(*image_data));
-	image_data->pixels_start_prt = mlx_get_data_addr(image,
+	image_data->pixels_start_prt = (unsigned int *)mlx_get_data_addr(image,
 			&image_data->bits_per_pixel,
 			&image_data->size_line, &image_data->endian);
 	image_data->pixels_per_line
@@ -62,8 +66,6 @@ int	main(void)
 			image_size.y);
 	window->image_status = 0;
 	window->image_data = get_image_data(window->image);
-	ft_printf("Image line length: %d (%lu)\n", window->image_data->size_line,
-		window->image_data->bits_per_pixel);
 	pixel_position.y = 200;
 	pixel_position.x = 400;
 	print_something(window->image_data, &pixel_position);
