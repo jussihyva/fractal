@@ -6,12 +6,13 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/29 00:18:44 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/06/29 09:48:05 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Input parameters
 
+OS					=	$(shell uname -s)
 CUR_DIR				=	$(abspath .)
 
 ifdef M
@@ -65,8 +66,6 @@ ifdef H
 else
 	HEURISTIC	=	-H t
 endif
-
-OS				=	$(shell uname -s)
 
 # Application specific parameters
 NAME			=	fractol

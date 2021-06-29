@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/28 22:00:01 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/06/29 10:30:17 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
-# ifdef DARWIN
-#  include "mlx.h"
-# else
-#  include "mlx.h"
-# endif
+# include "mlx.h"
 
 # define ESC		53
 
@@ -37,10 +33,10 @@ typedef struct s_window
 	t_yx_value	window_size;
 }				t_window;
 
-void	window_initialize(t_window *window, char *window_name);
-int		window_close(t_window *window);
-int		mouse_button_press(int keycode, int x, int y, t_window *window);
-int		mouse_motion_notify(int x, int y, t_window *window);
-int		keyboard_key_press(int keycode, t_window *window);
+t_window	*window_initialize(char *window_name);
+int			window_close(t_window *window);
+int			mouse_button_press(int keycode, int x, int y, t_window *window);
+int			mouse_motion_notify(int x, int y, t_window *window);
+int			keyboard_key_press(int keycode, t_window *window);
 
 #endif
