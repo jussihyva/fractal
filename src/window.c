@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/29 15:21:59 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/05 15:14:39 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	window_render_frame(t_window *window)
 	if (window->window_action)
 	{
 		ft_printf("%s\n", "MOI!");
+		mlx_put_image_to_window(window->mlx, window->win, window->image,
+			0, 0);
 		window->window_action = 0;
 	}
 	return (0);
@@ -46,6 +48,11 @@ t_window	*window_initialize(char *window_name)
 	window = (t_window *)ft_memalloc(sizeof(*window));
 	window->window_size.y = 600;
 	window->window_size.x = 900;
+	window->fractal_data
+		= (t_fractal_data *)ft_memalloc(sizeof(*window->fractal_data));
+	window->fractal_data->shape_real = -0.7;
+	window->fractal_data->shape_imaginary = 0.27015;
+	window->fractal_data->zoom = 1;
 	window->mlx = (void *)mlx_init();
 	window->win = mlx_new_window(window->mlx, window->window_size.x,
 			window->window_size.y, window_name);
@@ -57,5 +64,6 @@ void	window_release(t_window **window)
 {
 	mlx_destroy_image((*window)->mlx, (*window)->image);
 	mlx_destroy_window((*window)->mlx, (*window)->win);
+	ft_memdel((void **)&(*window)->fractal_data);
 	return ;
 }

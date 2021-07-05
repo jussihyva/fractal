@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/29 18:26:41 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/05 15:09:31 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,6 @@ typedef struct s_image_data
 	int				pixels_per_line;
 }				t_image_data;
 
-typedef struct s_window
-{
-	void			*mlx;
-	void			*win;
-	int				window_action;
-	t_yx_value		window_size;
-	void			*image;
-	t_image_data	*image_data;
-	int				image_status;
-}				t_window;
-
 typedef struct s_fractal_data
 {
 	double				shape_real;
@@ -62,6 +51,18 @@ typedef struct s_fractal_data
 	t_yx_value_double	offset;
 	double				zoom;
 }				t_fractal_data;
+
+typedef struct s_window
+{
+	void			*mlx;
+	void			*win;
+	int				window_action;
+	t_yx_value		window_size;
+	void			*image;
+	t_image_data	*image_data;
+	int				image_status;
+	t_fractal_data	*fractal_data;
+}				t_window;
 
 t_window		*window_initialize(char *window_name);
 int				window_close(t_window *window);
@@ -75,6 +76,7 @@ void			image_pixel_set(unsigned int *pixels_start_prt,
 t_image_data	*get_image_data(void *image);
 void			print_something(t_image_data *image_data,
 					t_yx_value *pixel_position);
-void			fractal_julia_create(t_image_data *image_data);
+void			fractal_julia_create(t_image_data *image_data,
+					t_fractal_data *fractal_data);
 
 #endif

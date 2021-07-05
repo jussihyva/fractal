@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:38 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/29 18:06:34 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/05 14:30:47 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ int	main(void)
 	pixel_position.y = 200;
 	pixel_position.x = 400;
 	print_something(window->image_data, &pixel_position);
-	fractal_julia_create(window->image_data);
-	mlx_put_image_to_window(window->mlx, window->win, window->image,
-		0, 0);
 	mlx_loop(window->mlx);
 	window_release(&window);
 	return (0);
