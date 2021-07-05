@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/06/29 23:11:38 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/07/06 00:14:22 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ INCLUDES		=	-I $(INCLUDE) -I $(LIB)
 
 # C (Source code) and H (Header) files
 SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c image.c \
-					fractal_julia.c
+					fractal_julia_1.c fractal_julia_2.c
 SRC_H_FILES		=	fractol.h
 LOCAL_LIBS		=	libftprintf.a libft.a
 GLOBAL_LIBS		=	libmlx.a
@@ -163,27 +163,6 @@ else
 	cat $(CUR_DIR)/$(MAP_FILE) | valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
 	$(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -A $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI)
 endif
-
-.PHONY: run_loop
-run_loop: all
-ifeq ($(OS), Darwin)
-	while [ 1 -eq 1 ] ; do \
-		python $(CUR_DIR)/bin/PuzzleGenerator.py ${MAX_MOVES} -s $(PUZZLE_SIZE) \
-		| $(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -rA $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI) ; \
-		done
-else
-	while [ 1 -eq 1 ] ; do \
-		$(CUR_DIR)/bin/PuzzleGenerator.py ${MAX_MOVES} -s $(PUZZLE_SIZE) \
-		| $(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -rA $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI) ; \
-		done
-endif
-
-.PHONY: run_test
-run_test: all
-	while [ 1 -eq 1 ] ; \
-	do \
-		python3 $(CUR_DIR)/test/n-puzzle_test.py $(PUZZLE_SIZE) ; \
-	done
 
 .PHONY: run_leaks
 run_leaks: all

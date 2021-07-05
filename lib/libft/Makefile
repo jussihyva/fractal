@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2021/04/17 10:41:20 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/07/05 23:54:04 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,3 +97,11 @@ re: fclean all
 
 .PHONY: bonus
 bonus: all
+
+.PHONY: norm
+norm:
+ifeq ($(OS), Darwin)
+	norminette-beta $(SRC)/* $(INCLUDE)/*
+else
+	norminette $(SRC)/* $(INCLUDE)/*
+endif

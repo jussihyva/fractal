@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/05 15:09:31 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 00:09:23 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "ft_printf.h"
 # include "mlx.h"
 
-# define ESC		53
+# define ESC				53
+# define MAX_ITERATIONS		300
 
 typedef struct s_yx_value
 {
@@ -31,6 +32,12 @@ typedef struct s_yx_value_double
 	double	x;
 }				t_yx_value_double;
 
+typedef struct s_fractal_coordinates
+{
+	double				real;
+	double				imaginary;
+}				t_fractal_coordinates;
+
 typedef struct s_image_data
 {
 	unsigned int	*pixels_start_prt;
@@ -42,14 +49,13 @@ typedef struct s_image_data
 
 typedef struct s_fractal_data
 {
-	double				shape_real;
-	double				shape_imaginary;
-	double				real;
-	double				imaginary;
-	double				real_prev;
-	double				imaginary_prev;
-	t_yx_value_double	offset;
-	double				zoom;
+	double					shape_real;
+	double					shape_imaginary;
+	t_fractal_coordinates	new;
+	t_fractal_coordinates	prev;
+	t_yx_value_double		offset;
+	t_yx_value				fractal_size;
+	double					zoom;
 }				t_fractal_data;
 
 typedef struct s_window
@@ -74,9 +80,8 @@ void			image_pixel_set(unsigned int *pixels_start_prt,
 					int pixels_per_line, t_yx_value *pixel_position,
 					unsigned int pixel_color);
 t_image_data	*get_image_data(void *image);
-void			print_something(t_image_data *image_data,
-					t_yx_value *pixel_position);
 void			fractal_julia_create(t_image_data *image_data,
 					t_fractal_data *fractal_data);
+void			update_new_values(t_fractal_data *fractal_data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/05 15:14:39 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 00:12:09 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_window	*window_initialize(char *window_name)
 	window->fractal_data->shape_real = -0.7;
 	window->fractal_data->shape_imaginary = 0.27015;
 	window->fractal_data->zoom = 1;
+	ft_memcpy(&window->fractal_data->fractal_size, &window->window_size,
+		sizeof(window->fractal_data->fractal_size));
 	window->mlx = (void *)mlx_init();
 	window->win = mlx_new_window(window->mlx, window->window_size.x,
 			window->window_size.y, window_name);

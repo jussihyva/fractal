@@ -6,17 +6,17 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:49:00 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/05 15:25:21 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/05 20:48:09 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
 int	mouse_button_press(int keycode, int x, int y, t_window *window)
 {
 	t_fractal_data		*fractal_data;
 
-	if (keycode == 4 || keycode == 5)
+	if (!window->window_action && (keycode == 4 || keycode == 5))
 	{
 		fractal_data = window->fractal_data;
 		if (keycode == 4)
@@ -40,7 +40,7 @@ int	mouse_motion_notify(int x, int y, t_window *window)
 	t_fractal_data		*fractal_data;
 
 	ft_printf("Y:%d X:%d\n", y, x);
-	if (x >= 0 && x < window->window_size.x
+	if (!window->window_action && x >= 0 && x < window->window_size.x
 		&& y >= 0 && y < window->window_size.y)
 	{
 		fractal_data = window->fractal_data;
