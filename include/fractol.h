@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 12:48:05 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 13:44:26 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_yx_value_double
 	double	y;
 	double	x;
 }				t_yx_value_double;
+
+typedef struct s_cmd_args
+{
+	int				argc;
+	char			**argv;
+	char			*fractal;
+}				t_cmd_args;
 
 typedef struct s_fractal_shape
 {

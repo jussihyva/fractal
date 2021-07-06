@@ -6,7 +6,8 @@
 	],
 	"settings": {
 		"files.associations": {
-			"fractol.h": "c"
+			"fractol.h": "c",
+			"libft.h": "c"
 		}
 	}
 }
