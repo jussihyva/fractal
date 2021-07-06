@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 09:55:48 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 12:14:15 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	window_render_frame(t_window *window)
 	{
 		window->window_action = UPDATE_ONGOING;
 		ft_printf("%s\n", "MOI!");
-		fractal_julia_create(window->image_data, window->fractal_data);
+		// fractal_julia_create(window->image_data, window->fractal_data);
+		fractal_mandelbrot_create(window->image_data, window->fractal_data);
 		mlx_put_image_to_window(window->mlx, window->win, window->image,
 			0, 0);
 		if (window->window_action == UPDATE_ONGOING)

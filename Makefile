@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/07/06 00:14:22 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/07/06 12:08:08 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,9 @@ INCLUDES		=	-I $(INCLUDE) -I $(LIB)
 
 # C (Source code) and H (Header) files
 SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c image.c \
-					fractal_julia_1.c fractal_julia_2.c
+					fractal_utils.c fractal_color.c \
+					fractal_julia_1.c fractal_julia_2.c \
+					fractal_mandelbrot.c
 SRC_H_FILES		=	fractol.h
 LOCAL_LIBS		=	libftprintf.a libft.a
 GLOBAL_LIBS		=	libmlx.a

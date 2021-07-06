@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 09:52:32 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 12:09:17 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,12 @@ void			image_pixel_set(unsigned int *pixels_start_prt,
 					int pixels_per_line, t_yx_value *pixel_position,
 					unsigned int pixel_color);
 t_image_data	*get_image_data(void *image);
+unsigned int	set_color(int i, int max_iterations);
 void			fractal_julia_create(t_image_data *image_data,
 					t_fractal_data *fractal_data);
+void			fractal_mandelbrot_create(t_image_data *image_data,
+					t_fractal_data *fractal_data);
+double			calculate_distance_from_origin(t_fractal_coordinates *new);
 void			update_new_values(t_fractal_data *fractal_data);
 
 #endif
