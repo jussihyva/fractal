@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:55:25 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/06/28 19:06:56 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 09:53:49 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ int	keyboard_key_press(int keycode, t_window *window)
 		window_close(window);
 	}
 	else
-	{
 		ft_printf("keycode: %#x\n", keycode);
-		window->window_action = 1;
-	}
 	return (0);
 }
