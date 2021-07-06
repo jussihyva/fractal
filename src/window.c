@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 12:14:15 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/06 12:38:56 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ t_window	*window_initialize(char *window_name)
 	window->window_size.x = 900;
 	window->fractal_data
 		= (t_fractal_data *)ft_memalloc(sizeof(*window->fractal_data));
-	window->fractal_data->shape_real = -0.7;
-	window->fractal_data->shape_imaginary = 0.27015;
+	window->fractal_data->shape.real = -0.7;
+	window->fractal_data->shape.imaginary = 0.27015;
 	window->fractal_data->zoom = 1;
 	ft_memcpy(&window->fractal_data->fractal_size, &window->window_size,
 		sizeof(window->fractal_data->fractal_size));
