@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 13:44:26 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 12:38:11 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ typedef struct s_fractal_data
 	double					zoom;
 }				t_fractal_data;
 
+typedef void	(*t_save_cmd_argument)(t_cmd_args *cmd_args, char opt,
+																char *next_arg);
+
+typedef t_cmd_args *(*t_initialize_cmd_args)(int argc, char **argv);
+
 typedef struct s_window
 {
 	void				*mlx;
@@ -88,6 +93,12 @@ typedef struct s_window
 	int					image_status;
 	t_fractal_data		*fractal_data;
 }				t_window;
+
+typedef struct s_arg_parser_functions
+{
+	t_initialize_cmd_args	initialize_cmd_args;
+	t_save_cmd_argument		save_cmd_argument;
+}				t_arg_parser_functions;
 
 t_window		*window_initialize(char *window_name);
 int				window_close(t_window *window);
@@ -108,5 +119,8 @@ double			calculate_distance_from_origin(t_fractal_coordinate *new);
 int				iterate_new_values(t_fractal_data *fractal_data,
 					int max_iterations);
 void			update_new_values(t_fractal_data *fractal_data);
+t_cmd_args		*ft_arg_parser(t_arg_parser_functions *arg_parser_functions,
+					int argc, char **argv, char *options);
+void			print_usage(void);
 
 #endif
