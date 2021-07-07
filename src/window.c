@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 12:38:56 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 14:44:01 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@ int	window_close(t_window *window)
 
 int	window_render_frame(t_window *window)
 {
-	if (window->window_action == UPDATE_IMAGE)
+	if (window->window_action == E_UPDATE_IMAGE)
 	{
-		window->window_action = UPDATE_ONGOING;
+		window->window_action = E_UPDATE_ONGOING;
 		ft_printf("%s\n", "MOI!");
-		// fractal_julia_create(window->image_data, window->fractal_data);
-		fractal_mandelbrot_create(window->image_data, window->fractal_data);
+		if (window->fractal_data->type_of_fractal == E_JULIA)
+			fractal_julia_create(window->image_data, window->fractal_data);
+		else
+			fractal_mandelbrot_create(window->image_data, window->fractal_data);
 		mlx_put_image_to_window(window->mlx, window->win, window->image,
 			0, 0);
-		if (window->window_action == UPDATE_ONGOING)
-			window->window_action = NO_ACTION;
+		if (window->window_action == E_UPDATE_ONGOING)
+			window->window_action = E_NO_ACTION;
 	}
 	return (0);
 }
@@ -45,24 +47,26 @@ static void	window_activate_hook_events(t_window *window)
 	return ;
 }
 
-t_window	*window_initialize(char *window_name)
+t_window	*window_initialize(char *fractal)
 {
 	t_window	*window;
+	char		*window_name;
 
+	if (ft_strequ(fractal, "j"))
+		window_name = ft_strdup("Fractal: Julia");
+	else if (ft_strequ(fractal, "m"))
+		window_name = ft_strdup("Fractal: Julia");
+	else
+		window_name = ft_strdup("Fractal!");
 	window = (t_window *)ft_memalloc(sizeof(*window));
 	window->window_size.y = 600;
 	window->window_size.x = 900;
-	window->fractal_data
-		= (t_fractal_data *)ft_memalloc(sizeof(*window->fractal_data));
-	window->fractal_data->shape.real = -0.7;
-	window->fractal_data->shape.imaginary = 0.27015;
-	window->fractal_data->zoom = 1;
-	ft_memcpy(&window->fractal_data->fractal_size, &window->window_size,
-		sizeof(window->fractal_data->fractal_size));
+	window->fractal_data = fractal_initialize(fractal, &window->window_size);
 	window->mlx = (void *)mlx_init();
 	window->win = mlx_new_window(window->mlx, window->window_size.x,
 			window->window_size.y, window_name);
 	window_activate_hook_events(window);
+	ft_strdel(&window_name);
 	return (window);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:38 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 11:51:30 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 14:23:48 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static t_cmd_args	*initialize_cmd_args(int argc, char **argv)
 	cmd_args = (t_cmd_args *)ft_memalloc(sizeof(*cmd_args));
 	cmd_args->argc = argc;
 	cmd_args->argv = argv;
+	cmd_args->fractal = ft_strdup("j");
 	return (cmd_args);
 }
 
@@ -71,12 +72,14 @@ int	main(int argc, char **argv)
 	arg_parser_functions.initialize_cmd_args = initialize_cmd_args;
 	arg_parser_functions.save_cmd_argument = save_cmd_argument;
 	cmd_args = ft_arg_parser(&arg_parser_functions, argc, argv, options);
-	window = window_initialize("Fractol!");
+	window = window_initialize(cmd_args->fractal);
 	window->image = mlx_new_image(window->mlx, window->window_size.x,
 			window->window_size.y);
 	window->image_status = 0;
 	window->image_data = get_image_data(window->image);
 	mlx_loop(window->mlx);
+	ft_memdel((void **)&cmd_args->fractal);
+	ft_memdel((void **)&cmd_args);
 	window_release(&window);
 	return (0);
 }

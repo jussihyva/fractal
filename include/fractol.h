@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 12:38:11 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 15:09:13 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@
 
 typedef enum e_window_action
 {
-	NO_ACTION,
-	UPDATE_ONGOING,
-	UPDATE_IMAGE
+	E_NO_ACTION,
+	E_UPDATE_ONGOING,
+	E_UPDATE_IMAGE
 }				t_window_action;
+
+typedef enum e_type_of_fractal
+{
+	E_JULIA,
+	E_MANDELBROT
+}				t_type_of_fractal;
 
 typedef struct s_yx_value
 {
@@ -69,6 +75,7 @@ typedef struct s_image_data
 
 typedef struct s_fractal_data
 {
+	t_type_of_fractal		type_of_fractal;
 	t_fractal_shape			shape;
 	t_fractal_coordinate	new;
 	t_fractal_coordinate	prev;
@@ -77,10 +84,12 @@ typedef struct s_fractal_data
 	double					zoom;
 }				t_fractal_data;
 
-typedef void	(*t_save_cmd_argument)(t_cmd_args *cmd_args, char opt,
+typedef void	(t_dfsdfdsf);
+
+typedef t_dfsdfdsf(*t_save_cmd_argument)(t_cmd_args *cmd_args, char opt,
 																char *next_arg);
 
-typedef t_cmd_args *(*t_initialize_cmd_args)(int argc, char **argv);
+typedef t_cmd_args*(*t_initialize_cmd_args)(int argc, char **argv);
 
 typedef struct s_window
 {
@@ -122,5 +131,6 @@ void			update_new_values(t_fractal_data *fractal_data);
 t_cmd_args		*ft_arg_parser(t_arg_parser_functions *arg_parser_functions,
 					int argc, char **argv, char *options);
 void			print_usage(void);
+t_fractal_data	*fractal_initialize(char *fractal, t_yx_value *window_size);
 
 #endif
