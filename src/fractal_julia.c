@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_julia_1.c                                  :+:      :+:    :+:   */
+/*   fractal_julia.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:00:13 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/06 12:47:28 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 17:54:51 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ static void	set_new_values(t_fractal_data *fractal_data,
 		/ (0.5 * fractal_data->zoom * image_size->x) + fractal_data->offset.x;
 	fractal_data->new.imaginary = (pixel_position->y - image_size->y / 2)
 		/ (0.5 * fractal_data->zoom * image_size->y) + fractal_data->offset.y;
+	return ;
+}
+
+void	update_shape_values_julia(t_fractal_shape *shape,
+										t_yx_value *window_size, int y, int x)
+{
+	t_yx_value_double	shape_factor;
+
+	shape_factor.y = (double)(window_size->y / 2 - y) / (window_size->y / 2)
+		* 0.01;
+	shape_factor.x = (double)(window_size->x / 2 - x) / (window_size->x / 2)
+		* 0.01;
+	shape->real = -0.7 + shape_factor.x;
+	shape->imaginary = 0.27015 + shape_factor.y;
 	return ;
 }
 

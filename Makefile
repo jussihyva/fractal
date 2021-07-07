@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/07/07 14:28:51 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/07/07 17:17:11 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,7 @@ SRC_C_FILES		=	event_mouse.c event_keyboard.c window.c image.c \
 					fractal_utils_1.c fractal_utils_2.c fractal_color.c \
 					fractal_julia.c \
 					fractal_mandelbrot.c \
+					fractal_polynomial.c \
 					ft_arg_parser.c
 SRC_H_FILES		=	fractol.h
 LOCAL_LIBS		=	libftprintf.a libft.a

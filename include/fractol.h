@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 15:09:13 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 18:32:02 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum e_window_action
 typedef enum e_type_of_fractal
 {
 	E_JULIA,
-	E_MANDELBROT
+	E_MANDELBROT,
+	E_POLYNOMIAL
 }				t_type_of_fractal;
 
 typedef struct s_yx_value
@@ -124,6 +125,8 @@ void			fractal_julia_create(t_image_data *image_data,
 					t_fractal_data *fractal_data);
 void			fractal_mandelbrot_create(t_image_data *image_data,
 					t_fractal_data *fractal_data);
+void			fractal_polynomial_create(t_image_data *image_data,
+					t_fractal_data *fractal_data);
 double			calculate_distance_from_origin(t_fractal_coordinate *new);
 int				iterate_new_values(t_fractal_data *fractal_data,
 					int max_iterations);
@@ -132,5 +135,13 @@ t_cmd_args		*ft_arg_parser(t_arg_parser_functions *arg_parser_functions,
 					int argc, char **argv, char *options);
 void			print_usage(void);
 t_fractal_data	*fractal_initialize(char *fractal, t_yx_value *window_size);
+void			update_shape_values(t_fractal_data *fractal_data,
+					t_yx_value *window_size, int x, int y);
+void			update_shape_values_julia(t_fractal_shape *shape,
+					t_yx_value *window_size, int y, int x);
+void			update_shape_values_polynomial(t_fractal_shape *shape,
+					t_yx_value *window_size, int y, int x);
+void			update_offset_values_mandelbrot(t_yx_value_double *offset,
+					t_yx_value *window_size, int y, int x);
 
 #endif

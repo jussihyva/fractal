@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 14:44:01 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 17:35:36 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int	window_render_frame(t_window *window)
 	{
 		window->window_action = E_UPDATE_ONGOING;
 		ft_printf("%s\n", "MOI!");
-		if (window->fractal_data->type_of_fractal == E_JULIA)
-			fractal_julia_create(window->image_data, window->fractal_data);
-		else
+		if (window->fractal_data->type_of_fractal == E_POLYNOMIAL)
+			fractal_polynomial_create(window->image_data, window->fractal_data);
+		else if (window->fractal_data->type_of_fractal == E_MANDELBROT)
 			fractal_mandelbrot_create(window->image_data, window->fractal_data);
+		else
+			fractal_julia_create(window->image_data, window->fractal_data);
 		mlx_put_image_to_window(window->mlx, window->win, window->image,
 			0, 0);
 		if (window->window_action == E_UPDATE_ONGOING)
@@ -56,6 +58,8 @@ t_window	*window_initialize(char *fractal)
 		window_name = ft_strdup("Fractal: Julia");
 	else if (ft_strequ(fractal, "m"))
 		window_name = ft_strdup("Fractal: Julia");
+	else if (ft_strequ(fractal, "p"))
+		window_name = ft_strdup("Fractal: polynomial");
 	else
 		window_name = ft_strdup("Fractal!");
 	window = (t_window *)ft_memalloc(sizeof(*window));

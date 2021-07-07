@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 23:49:19 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 14:43:33 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 17:25:35 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_fractal_data	*fractal_initialize(char *fractal, t_yx_value *window_size)
 	fractal_data->zoom = 1;
 	if (ft_strequ(fractal, "j"))
 		fractal_data->type_of_fractal = E_JULIA;
+	else if (ft_strequ(fractal, "p"))
+		fractal_data->type_of_fractal = E_POLYNOMIAL;
 	else
 		fractal_data->type_of_fractal = E_MANDELBROT;
 	ft_memcpy(&fractal_data->fractal_size, window_size,

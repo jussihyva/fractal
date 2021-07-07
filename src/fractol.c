@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:38 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 14:23:48 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/07 18:17:54 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(int argc, char **argv)
 			window->window_size.y);
 	window->image_status = 0;
 	window->image_data = get_image_data(window->image);
+	update_shape_values(window->fractal_data, &window->window_size, 0, 0);
+	window->window_action = E_UPDATE_IMAGE;
 	mlx_loop(window->mlx);
 	ft_memdel((void **)&cmd_args->fractal);
 	ft_memdel((void **)&cmd_args);
