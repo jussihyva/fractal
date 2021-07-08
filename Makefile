@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:02:24 by jkauppi           #+#    #+#              #
-#    Updated: 2021/07/07 17:17:11 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/07/08 11:05:06 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,56 +15,10 @@
 OS					=	$(shell uname -s)
 CUR_DIR				=	$(abspath .)
 
-ifdef M
-	MAX_MOVES		=	-i $(M)
-else
-	MAX_MOVES		=	-i 10
-endif
-
-ifdef G
-	ifeq (1, $(G))
-		PUZZLE_GUI	=	>/dev/null
-	else
-		PUZZLE_GUI	=	| ./bin/n-puzzle_gui.py
-	endif
-else
-	PUZZLE_GUI		=
-endif
-
-ifdef S
-	PUZZLE_SIZE		=	$(S)
-else
-	PUZZLE_SIZE		=	3
-endif
-
-ifdef D
-	PRINT_DELAY		=	$(D)
-else
-	PRINT_DELAY		=	0
-endif
-
 ifdef F
-	MAP_FILE		=	$(F)
+	FRACTAL			=	-F $(F)
 else
-	MAP_FILE		=	data/3_3_05.map
-endif
-
-ifdef L
-	LOGING_LEVEL	=	-L $(L)
-else
-	LOGING_LEVEL	=
-endif
-
-ifdef A
-	ALGORITHM	=	$(A)
-else
-	ALGORITHM	=	greedy
-endif
-
-ifdef H
-	HEURISTIC	=	-H $(H)
-else
-	HEURISTIC	=	-H t
+	FRACTAL			=	-F j
 endif
 
 # Application specific parameters
@@ -73,7 +27,7 @@ NAMES			=	$(NAME)
 
 # Folders
 LIB				=	lib
-BIN				=	bin
+BIN				=	.
 DATA			=	data
 OBJ				=	obj
 SRC				=	src
@@ -161,21 +115,19 @@ libraries_norm:
 .PHONY: run
 run: all
 ifeq ($(OS), Darwin)
-	cat $(CUR_DIR)/$(MAP_FILE) \
-	| $(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -A $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI)
+	$(CUR_DIR)/$(BIN)/$(NAME) $(FRACTAL)
 else
-	cat $(CUR_DIR)/$(MAP_FILE) | valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
-	$(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -A $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI)
+	valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
+	$(CUR_DIR)/$(BIN)/$(NAME) $(FRACTAL)
 endif
 
 .PHONY: run_leaks
 run_leaks: all
 ifeq ($(OS), Darwin)
-	cat $(CUR_DIR)/$(MAP_FILE) | $(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -A $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI)
+	leaks $(NAME)
 else
-	cat $(CUR_DIR)/$(MAP_FILE) | valgrind -s --tool=memcheck \
-	--leak-check=full --show-leak-kinds=all \
-	$(CUR_DIR)/$(BIN)/$(NAME) $(LOGING_LEVEL) -A $(ALGORITHM) $(HEURISTIC) -D $(PRINT_DELAY) $(PUZZLE_GUI)
+	valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
+	$(CUR_DIR)/$(BIN)/$(NAME) $(FRACTAL)
 endif
 
 .PHONY: clean

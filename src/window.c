@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/08 08:21:43 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 10:38:07 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	window_render_frame(t_window *window)
 	if (window->window_action == E_UPDATE_IMAGE)
 	{
 		window->window_action = E_UPDATE_ONGOING;
-		ft_printf("%s\n", "MOI!");
 		if (window->fractal_data->type_of_fractal == E_POLYNOMIAL)
 			fractal_polynomial_create(window->image_data, window->fractal_data);
 		else if (window->fractal_data->type_of_fractal == E_MANDELBROT)
@@ -35,6 +34,7 @@ int	window_render_frame(t_window *window)
 			0, 0);
 		if (window->window_action == E_UPDATE_ONGOING)
 			window->window_action = E_NO_ACTION;
+		ft_printf("%s\n", "Fractal updated!");
 	}
 	return (0);
 }

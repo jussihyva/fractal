@@ -6,9 +6,11 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2021/07/05 23:54:04 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/07/08 10:49:34 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+OS				=	$(shell uname -s)
 
 NAME		=	libft.a
 LIB_SUFFIX	=	ft

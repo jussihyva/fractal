@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:49:00 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 18:32:22 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 10:37:17 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	mouse_motion_notify(int x, int y, t_window *window)
 	static t_yx_value	prev_pos = {.x = 0, .y = 0};
 	t_fractal_data		*fractal_data;
 
-	ft_printf("Y:%d X:%d\n", y, x);
 	if (x >= 0 && x < window->window_size.x && y >= 0
 		&& y < window->window_size.y)
 	{
@@ -64,6 +63,7 @@ int	mouse_motion_notify(int x, int y, t_window *window)
 			window->window_action = E_UPDATE_IMAGE;
 			prev_pos.y = y;
 			prev_pos.x = x;
+			ft_printf("Y:%d X:%d\n", y, x);
 		}
 	}
 	return (0);

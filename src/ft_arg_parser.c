@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:32:50 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 11:49:10 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 10:46:15 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	param_error(const char *error_string, const char s)
 	return ;
 }
 
-static void	split_cmd_argument(t_save_cmd_argument save_cmd_arguments,
+static void	split_cmd_argument(t_save_cmd_argument save_cmd_argument,
 							t_cmd_args *cmd_args, int *arg_index, char *options)
 {
 	int			i;
@@ -38,12 +38,11 @@ static void	split_cmd_argument(t_save_cmd_argument save_cmd_arguments,
 			{
 				if (++(*arg_index) >= cmd_args->argc)
 					param_error("Missing argument for parameter: -%c", arg[i]);
-				save_cmd_arguments(cmd_args, arg[i],
-					cmd_args->argv[*arg_index]);
+				save_cmd_argument(cmd_args, arg[i], cmd_args->argv[*arg_index]);
 				break ;
 			}
 			else
-				save_cmd_arguments(cmd_args, arg[i], NULL);
+				save_cmd_argument(cmd_args, arg[i], NULL);
 			i++;
 		}
 		else
