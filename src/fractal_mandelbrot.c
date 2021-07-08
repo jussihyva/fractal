@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 11:53:49 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 18:34:56 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 12:03:02 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	fractal_mandelbrot_create(t_image_data *image_data,
 			set_shape_values(fractal_data, &pixel_position);
 			set_new_values(fractal_data, &pixel_position);
 			i = iterate_new_values(fractal_data, MAX_ITERATIONS);
-			color = set_color(i, MAX_ITERATIONS);
+			color = set_color(i, fractal_data->zoom);
 			image_pixel_set(image_data->pixels_start_prt,
 				image_data->pixels_per_line, &pixel_position, color);
 		}

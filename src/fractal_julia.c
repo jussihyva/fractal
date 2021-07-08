@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:00:13 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 17:54:51 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 12:02:57 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	fractal_julia_create(t_image_data *image_data,
 		{
 			set_new_values(fractal_data, &pixel_position);
 			i = iterate_new_values(fractal_data, MAX_ITERATIONS);
-			color = set_color(i, MAX_ITERATIONS);
+			color = set_color(i, fractal_data->zoom);
 			image_pixel_set(image_data->pixels_start_prt,
 				image_data->pixels_per_line, &pixel_position, color);
 		}
