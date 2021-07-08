@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 18:58:11 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 17:35:36 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 08:21:43 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ t_window	*window_initialize(char *fractal)
 	if (ft_strequ(fractal, "j"))
 		window_name = ft_strdup("Fractal: Julia");
 	else if (ft_strequ(fractal, "m"))
-		window_name = ft_strdup("Fractal: Julia");
+		window_name = ft_strdup("Fractal: Mandelbrot");
 	else if (ft_strequ(fractal, "p"))
 		window_name = ft_strdup("Fractal: polynomial");
 	else
-		window_name = ft_strdup("Fractal!");
+	{
+		ft_printf("Unknown fractal type: %s\n", fractal);
+		exit(42);
+	}
 	window = (t_window *)ft_memalloc(sizeof(*window));
 	window->window_size.y = 600;
 	window->window_size.x = 900;
