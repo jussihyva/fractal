@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:16:38 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/07/07 18:17:54 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/07/08 11:45:18 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,19 @@
 void	print_usage(void)
 {
 	ft_printf("Usage:\n");
-	ft_printf("1.     ./bin/n_puzzle [options]\n");
-	ft_printf("      3\n");
-	ft_printf("      1 2 3\n");
-	ft_printf("      4 5 6\n");
-	ft_printf("      8 7 0\n");
-	ft_printf("      <Cntrl>-D\n");
-	ft_printf("\n2.     cat data/3_3_05.map | ./bin/n_puzzle [options]\n");
-	ft_printf("%s %s\n",
-		"\n3.     python ./bin/PuzzleGenerator.py -s 3",
-		"| ./bin/n_puzzle [options]");
-	ft_printf("%s %s\n",
-		"\n4.     python ./bin/PuzzleGenerator.py -s 3",
-		"| ./bin/n_puzzle -D 2000 | ./bin/n-puzzle_gui.py\n");
-	ft_printf("\n\nOptional parameters:\n");
-	ft_printf("  -A <alg_name> Puzzle solving algorithm\n");
-	ft_printf("  -H <alg_name> Heuristic algorithm for distance calculation\n");
-	ft_printf("  -L    Event logging level\n");
-	ft_printf("  -D    Result printout speed. Delay (ms) between tile moves\n");
-	ft_printf("  -r    Release request for post proocessing functions\n");
+	ft_printf("  ./fractol -F <type_of_fractal>\n");
+	ft_printf("\n\n Example:   ./fractol -F j\n");
+	ft_printf("\n\nMandatory parameter:\n");
+	ft_printf("  -F <type_of_fractal>\n");
+	ft_printf("Optional parameter:\n");
 	ft_printf("  -h    Help printout\n");
+	ft_printf("\n\n   <type_of_fractal>\n");
+	ft_printf("  j     Julia      (z = z^2 + C.");
+	ft_printf(" C = Constant values + mouse locaation on the image.)\n");
+	ft_printf("  m     Mandelbrot (z = z^2 + C.");
+	ft_printf(" C = Mouse Distance from the origin of the image.)\n");
+	ft_printf("  p     Polynomial (z = z^2 - C.");
+	ft_printf(" C = 1 + mouse locaation on the image.)\n");
 	exit(42);
 }
 
@@ -68,6 +61,8 @@ int	main(int argc, char **argv)
 	char						*options;
 	t_arg_parser_functions		arg_parser_functions;
 
+	if (argc == 1)
+		print_usage();
 	options = ft_strdup("hF:");
 	arg_parser_functions.initialize_cmd_args = initialize_cmd_args;
 	arg_parser_functions.save_cmd_argument = save_cmd_argument;
